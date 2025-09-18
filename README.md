@@ -14,8 +14,7 @@ This repository contains helper functions for: building/decoding signed-binary e
 4. Key functions (API reference + examples)
 5. Typical workflows & examples
 6. Performance & safety notes
-7. Troubleshooting & tips
-8. License & author
+7. License & author
 
 ---
 
@@ -186,26 +185,8 @@ plt.plot(E)
 ## 6) Performance & safety notes
 - `brute_force_ising` scales as `2^N` memory/time — use `max_enumeration_bits` to avoid accidental explosions.
 - The Gauss-sieve implementations are educational/small-scale: for production-level large sieving use optimized libraries.
-- `run_cim` expects a functioning CIM solver; runtime and memory depend heavily on `NUM_VECTORS`, `iters` and the underlying GPU/CPU.
 - `v_to_u_from_B` uses `np.linalg.solve` and floating rounding — ensure `B` is well-conditioned or use exact/integer linear algebra for very large integers.
 
----
 
-## 7) Troubleshooting & tips
-- If `v_to_u_from_B` returns `ok=False`, inspect the residual and B’s conditioning. Try LLL-reducing the basis with `lll_reduce_basis(B)` before building meta.
-- If `u_to_bits_vector` returns `ok=False`, increase `bits` when building meta or check `bit_weights` (MSB negative scheme).
-- The sign mapping between bits and spins is `s = 1 - 2*x` — be careful when passing spins into `spins_array_to_u_v` (function accepts ±1 or 0/1).
-- `IsingMachine.CFC` / `singlequbo` are *local dependencies* — adapt `run_cim` to your own CIM or Ising solver if you don’t have them.
-
----
-
-## 8) License & author
-Write/insert your preferred license. Author: (your name). Date: (update as needed).
-
----
-
-If you want, I can also:
-- Add runnable minimal examples (tiny `B` and `meta`) as a `examples.py` file.
-- Produce unit tests for the critical conversions (`u <-> x_bits <-> v`).
-- Convert `run_cim` to optionally accept any `dimod` sampler instead of `IsingMachine.CFC`.
-
+## 7) License & author
+MIT license. Author: Mahmood Hasani
