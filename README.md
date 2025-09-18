@@ -1,4 +1,4 @@
-# Gauss-Sieve ⇄ Ising ⇄ CIM Utilities — README
+# Gauss-Sieve CIM
 
 **Summary**
 
@@ -19,7 +19,7 @@ This repository contains helper functions for: building/decoding signed-binary e
 ---
 
 ## 1) Quick overview
-
+- The main file is IsingLWE.py
 - `build_meta_with_fixed(B, bits, fixed_idx, fixed_val, convention)` — build a `meta` descriptor for signed-binary encoding of integer coefficient vectors `u` (with the option to fix coordinate(s)).
 - `decode_bits_to_u_with_fixed(x_bits, meta)` — decode an m-bit vector into full integer `u` including fixed entries.
 - `build_all_coord_lookups(meta)` / `_build_value_to_bits_lookup_for_coord` — internal helpers to map integer `u[i]` values to bit patterns for each free coordinate.
