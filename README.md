@@ -28,7 +28,7 @@ This repository contains helper functions for: building/decoding signed-binary e
 - `plot_sieving_progress` — visualize min/avg/max squared norms during the sieve.
 - `lll_reduce_basis` — wrapper around `fpylll.LLL` to return an LLL-reduced integer matrix.
 - `gauss_vs_to_ising_states` — **high level**: converts Gauss-sieve output vectors `V` into bit vectors, spins and Ising dicts, along with `u` and norms.
-- `run_cim` — pipeline: build QUBO from `meta`, convert to Ising, run CIM (via `IsingMachine.CFC`) and refine with `SteepestDescentSampler` from dwave-package. Returns candidate lattice vectors and best norm.
+- `IsingLWE` — pipeline: build QUBO from `meta`, convert to Ising, run CIM (via `IsingMachine.CFC`) and refine with `SteepestDescentSampler` from dwave-package. Returns candidate lattice vectors and best norm.
 - `simulate_snn_cim` — a simple ODE-based SNN-CIM Euler integrator useful for prototyping.
 - `brute_force_ising` — exact minimizer of small Ising Hamiltonians (warning: exponential in N).
 - `enumerate_all_with_fixed` — exact enumeration of all `2^m` bit patterns with fixed coordinates; useful for small instances and debug.
