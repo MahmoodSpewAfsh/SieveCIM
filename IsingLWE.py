@@ -12,6 +12,28 @@ from singlequbo import *
 from IsingMachine import *
 from dwave.samplers import SteepestDescentSampler
 
+def to_numpy(x):
+    """Convert tensor-like or sequence to a NumPy array without importing torch."""
+    if isinstance(x, np.ndarray):
+        return x
+    # if it supports .cpu() (e.g. a torch tensor on GPU), try that then .numpy()
+    if hasattr(x, "cpu"):
+        try:
+            return x.cpu().numpy()
+        except Exception:
+            pass
+    # otherwise try .numpy()
+    if hasattr(x, "numpy"):
+        try:
+            return x.numpy()
+        except Exception:
+            pass
+    # fallback: try to coerce to numpy array
+    try:
+        return np.array(x)
+    except Exception as e:
+        raise TypeError("Cannot convert object to numpy array") from e
+
 def _build_value_to_bits_lookup_for_coord(i: int, bits: int, bit_weights: Dict[tuple,int]) -> Dict[int, np.ndarray]:
     """
     For coordinate i build dict: integer_value -> bit_vector (length bits, dtype=np.int8)
